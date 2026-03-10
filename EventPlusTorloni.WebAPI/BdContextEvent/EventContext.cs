@@ -26,7 +26,7 @@ public partial class EventContext : DbContext
 
     public virtual DbSet<TipoEvento> TipoEventos { get; set; }
 
-    public virtual DbSet<TipoUsuario> TipoUsuarios { get; set; }
+    public virtual DbSet<TipoEventos> TipoUsuarios { get; set; }
 
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
@@ -42,8 +42,6 @@ public partial class EventContext : DbContext
 
             entity.Property(e => e.IdComentarioEvento).HasDefaultValueSql("(newid())");
 
-            entity.HasOne(d => d.IdTipoEventoNavigation).WithMany(p => p.ComentarioEventos).HasConstraintName("FK__Comentari__id_Ti__75A278F5");
-
             entity.HasOne(d => d.IdTipoUsuarioNavigation).WithMany(p => p.ComentarioEventos).HasConstraintName("FK__Comentari__id_Ti__74AE54BC");
         });
 
@@ -54,8 +52,6 @@ public partial class EventContext : DbContext
             entity.Property(e => e.IdEvento).HasDefaultValueSql("(newid())");
 
             entity.HasOne(d => d.IdInstituiçãoNavigation).WithMany(p => p.Eventos).HasConstraintName("FK__Evento__id_Insti__6C190EBB");
-
-            entity.HasOne(d => d.IdTipoEventoNavigation).WithMany(p => p.Eventos).HasConstraintName("FK__Evento__id_Tipo___6B24EA82");
         });
 
         modelBuilder.Entity<Instituicao>(entity =>
@@ -71,8 +67,6 @@ public partial class EventContext : DbContext
 
             entity.Property(e => e.IdPresenca).HasDefaultValueSql("(newid())");
 
-            entity.HasOne(d => d.IdTipoEventoNavigation).WithMany(p => p.Presencas).HasConstraintName("FK__Presenca__id_Tip__70DDC3D8");
-
             entity.HasOne(d => d.IdTipoUsuarioNavigation).WithMany(p => p.Presencas).HasConstraintName("FK__Presenca__id_Tip__6FE99F9F");
         });
 
@@ -83,7 +77,7 @@ public partial class EventContext : DbContext
             entity.Property(e => e.IdTipoEvento).HasDefaultValueSql("(newid())");
         });
 
-        modelBuilder.Entity<TipoUsuario>(entity =>
+        modelBuilder.Entity<TipoEventos>(entity =>
         {
             entity.HasKey(e => e.IdTipoUsuario).HasName("PK__Tipo_Usu__669B0AF0AD1CA597");
 

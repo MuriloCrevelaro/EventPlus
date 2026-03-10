@@ -1,9 +1,62 @@
+using EventPlusTorloni.WebAPI.BdContextEvent;
+using EventPlusTorloni.WebAPI.Interface;
+using EventPlusTorloni.WebAPI.Repositories;
+using Microsoft.AspNetCore.Connections;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi;
+using System.Net;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddDbContext<EventContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+builder.Services.AddOpenApi();
+
+builder.Services.AddScoped<ITipoEventoRepository, TipoEventoRepository>();
+
+//Adiciona Swagger
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "EventPlus API",
+        Description = "Aplicação para gerenciamento de eventos",
+        TermsOfService = new Uri("https://example.com/terms"),
+        Contact = new OpenApiContact
+        {
+            Name = "Equipe EventPlus",
+            Url = new Uri ("https://github.com/MuriloCrevelaro/EventPlus")
+        },
+        License = new OpenApiLicense
+        {
+            Name = "Exemplo de licensa",
+            Url = new Uri("https://example.com/license")
+        }
+     });
+
+    //Usado a autenticação no swagger
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "Insira o token JWT: "  
+    });
+
+    options.AddSecurityRequirement(document => new OpenApiSecurityRequirement
+    {
+        [new OpenApiSecuritySchemeReference("Bearer", document)] = Array.Empty<string>().ToList()
+    });
+});
+
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
@@ -12,6 +65,12 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwagger(option => { });
+    app.UseSwaggerUI(option =>
+    {
+        option.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+        option.RoutePrefix = string.Empty;
+    });
 }
 
 app.UseHttpsRedirection();

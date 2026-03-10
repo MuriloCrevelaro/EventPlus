@@ -32,5 +32,5 @@ public partial class Usuario
 
     [ForeignKey("IdTipoUsuario")]
     [InverseProperty("Usuarios")]
-    public virtual TipoUsuario? IdTipoUsuarioNavigation { get; set; }
+    public virtual TipoEventos? IdTipoUsuarioNavigation { get; set; }
 }

@@ -31,7 +31,7 @@ public class TipoEventoRepository : ITipoEventoRepository
         }
     }
 
-    public void Atualizar(Guid id, TipoEventos tipoUsuario)
+    public void Atualizar(Guid id, TipoUsuario tipoUsuario)
     {
         throw new NotImplementedException();
     }
@@ -57,7 +57,7 @@ public class TipoEventoRepository : ITipoEventoRepository
         _context.SaveChanges();
     }
 
-    public void Cadastrar(TipoEventos tipoUsuario)
+    public void Cadastrar(TipoUsuario tipoUsuario)
     {
         throw new NotImplementedException();
     }

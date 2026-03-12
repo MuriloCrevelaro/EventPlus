@@ -8,5 +8,5 @@ public interface IInstituicaoRepository
     void Cadastrar(Instituicao instituicao);
     void Atualizar(Guid id, Instituicao instituicao);
     void Deletar(Guid id);
-    void BuscarPorId(Guid id);
+    Instituicao BuscarPorId(Guid id);
 }

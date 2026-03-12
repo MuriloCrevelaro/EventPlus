@@ -10,16 +10,16 @@ namespace EventPlusTorloni.WebAPI.Models;
 public partial class Presenca
 {
     [Key]
-    [Column("id_Presenca")]
+    [Column("idPresenca")]
     public Guid IdPresenca { get; set; }
 
     [Column("Presenca")]
     public bool Presenca1 { get; set; }
 
-    [Column("id_Tipo_Usuario")]
+    [Column("idTipoUsuario")]
     public Guid? IdTipoUsuario { get; set; }
 
-    [Column("id_Tipo_Evento")]
+    [Column("idTipoEvento")]
     public Guid? IdTipoEvento { get; set; }
 
     [ForeignKey("IdTipoEvento")]
@@ -28,5 +28,5 @@ public partial class Presenca
 
     [ForeignKey("IdTipoUsuario")]
     [InverseProperty("Presencas")]
-    public virtual TipoEventos? IdTipoUsuarioNavigation { get; set; }
+    public virtual TipoUsuario? IdTipoUsuarioNavigation { get; set; }
 }

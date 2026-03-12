@@ -10,7 +10,7 @@ namespace EventPlusTorloni.WebAPI.Models;
 public partial class Evento
 {
     [Key]
-    [Column("id_Evento")]
+    [Column("idEvento")]
     public Guid IdEvento { get; set; }
 
     [StringLength(100)]
@@ -24,10 +24,10 @@ public partial class Evento
     [Unicode(false)]
     public string Descricao { get; set; } = null!;
 
-    [Column("id_Tipo_Evento")]
+    [Column("idTipoEvento")]
     public Guid? IdTipoEvento { get; set; }
 
-    [Column("id_Instituição")]
+    [Column("idInstituição")]
     public Guid? IdInstituição { get; set; }
 
     [ForeignKey("IdInstituição")]

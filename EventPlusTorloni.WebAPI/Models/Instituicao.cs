@@ -1,9 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
+using Microsoft.EntityFrameworkCore;
 
 namespace EventPlusTorloni.WebAPI.Models;
 
@@ -11,7 +10,7 @@ namespace EventPlusTorloni.WebAPI.Models;
 public partial class Instituicao
 {
     [Key]
-    [Column("id_Instituição")]
+    [Column("idInstituição")]
     public Guid IdInstituição { get; set; }
 
     [StringLength(100)]
@@ -28,6 +27,5 @@ public partial class Instituicao
     public string Cnpj { get; set; } = null!;
 
     [InverseProperty("IdInstituiçãoNavigation")]
-    [JsonIgnore]
     public virtual ICollection<Evento> Eventos { get; set; } = new List<Evento>();
 }

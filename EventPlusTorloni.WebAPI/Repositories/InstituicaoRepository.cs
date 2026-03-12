@@ -11,25 +11,27 @@ namespace EventPlusTorloni.WebAPI.Repositories
         {
             _context = context;
         }
-        public void Atualizar(Guid id, Instituicao instituicao)
-        {
-            var instituicaoBuscada = _context.Instituicaos.Find(id);
-            if (instituicaoBuscada != null)
-            {
-                instituicaoBuscada.NomeFantasia = instituicao.NomeFantasia;
-                _context.SaveChanges();
-            }
-        }
-
-        public Instituicao BuscarPorId(Guid id)
-        {
-            return _context.Instituicaos.Find(id)!;
-        }
 
         public void Cadastrar(Instituicao Instituicao)
         {
             _context.Instituicaos.Add(Instituicao);
             _context.SaveChanges();
+        }
+        public Instituicao BuscarPorId(Guid id)
+        {
+            return _context.Instituicaos.Find(id)!;
+        }
+
+        public void Atualizar(Guid id, Instituicao Instituicao)
+        {
+            var instituicaoBuscada = _context.Instituicaos.Find(id);
+            if (instituicaoBuscada != null)
+            {
+                instituicaoBuscada.Cnpj = string.IsNullOrWhiteSpace(Instituicao.Cnpj) ? instituicaoBuscada.Cnpj : Instituicao.Cnpj;
+                instituicaoBuscada.NomeFantasia = string.IsNullOrWhiteSpace(Instituicao.NomeFantasia) ? instituicaoBuscada.NomeFantasia : Instituicao.NomeFantasia;
+                instituicaoBuscada.Endereço = string.IsNullOrWhiteSpace(Instituicao.Endereço) ? instituicaoBuscada.Endereço : Instituicao.Endereço;
+                _context.SaveChanges();
+            }
         }
 
         public void Deletar(Guid id)
@@ -45,11 +47,6 @@ namespace EventPlusTorloni.WebAPI.Repositories
         public List<Instituicao> Listar()
         {
             return _context.Instituicaos.OrderBy(Instituicao => Instituicao.NomeFantasia).ToList();
-        }
-
-        void IInstituicaoRepository.BuscarPorId(Guid id)
-        {
-            throw new NotImplementedException();
         }
     }
 }

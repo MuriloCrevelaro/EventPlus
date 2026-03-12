@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EventPlusTorloni.WebAPI.Repositories;
 
-public class UsuarioRepository : ITipoUsuarioRepository
+public class TipoUsuarioRepository : ITipoUsuarioRepository
 {
     private readonly EventContext _context;
-    public UsuarioRepository(EventContext context)
+    public TipoUsuarioRepository(EventContext context)
     {
         _context = context;
     }
@@ -17,7 +17,7 @@ public class UsuarioRepository : ITipoUsuarioRepository
         throw new NotImplementedException();
     }
 
-    public void Atualizar(Guid id, TipoEventos tipoUsuario)
+    public void Atualizar(Guid id, TipoUsuario tipoUsuario)
     {
         var tipoUsuariosBuscado = _context.TipoUsuarios.Find(id);
         if (tipoUsuariosBuscado != null)
@@ -28,12 +28,17 @@ public class UsuarioRepository : ITipoUsuarioRepository
         }
     }
 
+    public Usuario BuscarPorEmailESenha(string Email, string Senha)
+    {
+        throw new NotImplementedException();
+    }
+
     /// <summary>
     /// Busca um tipo de usuario por id
     /// </summary>
     /// <param name="id"> id do tipo usuario a ser buscado</param>
     /// <returns>objeto do suario buscado com as informações do tipo de evento buscado</returns>
-    public TipoEventos BuscarPorId(Guid id)
+    public TipoUsuario BuscarPorId(Guid id)
     {
         return _context.TipoUsuarios.Find(id)!;
     }
@@ -42,7 +47,7 @@ public class UsuarioRepository : ITipoUsuarioRepository
     /// 
     /// </summary>
     /// <param name="tipoUsuario"></param>
-    public void Cadastrar(TipoEventos tipoUsuario)
+    public void Cadastrar(TipoUsuario tipoUsuario)
     {
         _context.TipoUsuarios.Add(tipoUsuario);
         _context.SaveChanges();
@@ -73,9 +78,13 @@ public class UsuarioRepository : ITipoUsuarioRepository
     /// </summary>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    public List<TipoEventos> Listar()
+    public List<TipoUsuario> Listar()
     {
         return _context.TipoUsuarios.OrderBy(TipoUsuario => TipoUsuario.Titulo).ToList();
     }
 
+    Usuario ITipoUsuarioRepository.BuscarPorId(Guid id)
+    {
+        throw new NotImplementedException();
+    }
 }

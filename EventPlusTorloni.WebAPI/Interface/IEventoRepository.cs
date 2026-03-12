@@ -10,5 +10,4 @@ public interface IEventoRepository
     List<Evento> ProximosEventos();
     void Delete(Guid IdEvento);
     void Atualizar(Guid id, Evento evento);
-
 }

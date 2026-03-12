@@ -10,7 +10,7 @@ namespace EventPlusTorloni.WebAPI.Models;
 public partial class ComentarioEvento
 {
     [Key]
-    [Column("id_ComentarioEvento")]
+    [Column("idComentarioEvento")]
     public Guid IdComentarioEvento { get; set; }
 
     [StringLength(200)]
@@ -22,10 +22,10 @@ public partial class ComentarioEvento
     [Column(TypeName = "datetime")]
     public DateTime DataComentario { get; set; }
 
-    [Column("id_Tipo_Usuario")]
+    [Column("idTipoUsuario")]
     public Guid? IdTipoUsuario { get; set; }
 
-    [Column("id_Tipo_Evento")]
+    [Column("idTipoEvento")]
     public Guid? IdTipoEvento { get; set; }
 
     [ForeignKey("IdTipoEvento")]
@@ -34,5 +34,5 @@ public partial class ComentarioEvento
 
     [ForeignKey("IdTipoUsuario")]
     [InverseProperty("ComentarioEventos")]
-    public virtual TipoEventos? IdTipoUsuarioNavigation { get; set; }
+    public virtual TipoUsuario? IdTipoUsuarioNavigation { get; set; }
 }

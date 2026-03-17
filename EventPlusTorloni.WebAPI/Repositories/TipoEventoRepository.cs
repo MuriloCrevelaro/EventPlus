@@ -31,11 +31,6 @@ public class TipoEventoRepository : ITipoEventoRepository
         }
     }
 
-    public void Atualizar(Guid id, TipoUsuario tipoUsuario)
-    {
-        throw new NotImplementedException();
-    }
-
 
     /// <summary>
     /// 
@@ -57,10 +52,6 @@ public class TipoEventoRepository : ITipoEventoRepository
         _context.SaveChanges();
     }
 
-    public void Cadastrar(TipoUsuario tipoUsuario)
-    {
-        throw new NotImplementedException();
-    }
 
     /// <summary>
     /// Deleta um tipo de evento
@@ -83,5 +74,15 @@ public class TipoEventoRepository : ITipoEventoRepository
     public List<TipoEvento> Listar()
     {
         return _context.TipoEventos.OrderBy(tipoEvento => tipoEvento.Titulo).ToList();
+    }
+
+    public List<TipoEvento> ListarPorId(Guid IdUsuario)
+    {
+        throw new NotImplementedException();
+    }
+
+    public List<TipoEvento> ProxomosEventos(Guid id)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -13,20 +13,19 @@ public partial class Presenca
     [Column("idPresenca")]
     public Guid IdPresenca { get; set; }
 
-    [Column("Presenca")]
-    public bool Presenca1 { get; set; }
+    public bool Situacao { get; set; }
 
-    [Column("idTipoUsuario")]
-    public Guid? IdTipoUsuario { get; set; }
+    [Column("idUsuario")]
+    public Guid? IdUsuario { get; set; }
 
-    [Column("idTipoEvento")]
-    public Guid? IdTipoEvento { get; set; }
+    [Column("idEvento")]
+    public Guid? IdEvento { get; set; }
 
-    [ForeignKey("IdTipoEvento")]
+    [ForeignKey("IdEvento")]
     [InverseProperty("Presencas")]
-    public virtual TipoEvento? IdTipoEventoNavigation { get; set; }
+    public virtual Evento? IdEventoNavigation { get; set; }
 
-    [ForeignKey("IdTipoUsuario")]
+    [ForeignKey("IdUsuario")]
     [InverseProperty("Presencas")]
-    public virtual TipoUsuario? IdTipoUsuarioNavigation { get; set; }
+    public virtual Usuario? IdUsuarioNavigation { get; set; }
 }

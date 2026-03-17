@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 namespace EventPlusTorloni.WebAPI.Models;
 
 [Table("Usuario")]
-[Index("Email", Name = "UQ__Usuario__A9D105345284E6B9", IsUnique = true)]
+[Index("Email", Name = "UQ__Usuario__A9D105340CF935E6", IsUnique = true)]
 public partial class Usuario
 {
     [Key]
@@ -29,7 +30,15 @@ public partial class Usuario
     [Column("idTipoUsuario")]
     public Guid? IdTipoUsuario { get; set; }
 
+    [InverseProperty("IdUsuarioNavigation")]
+    [JsonIgnore]
+    public virtual ICollection<ComentarioEvento> ComentarioEventos { get; set; } = new List<ComentarioEvento>();
+
     [ForeignKey("IdTipoUsuario")]
     [InverseProperty("Usuarios")]
     public virtual TipoUsuario? IdTipoUsuarioNavigation { get; set; }
+
+    [InverseProperty("IdUsuarioNavigation")]
+    [JsonIgnore]
+    public virtual ICollection<Presenca> Presencas { get; set; } = new List<Presenca>();
 }

@@ -1,4 +1,5 @@
 ﻿using EventPlusTorloni.WebAPI.BdContextEvent;
+using EventPlusTorloni.WebAPI.DTO;
 using EventPlusTorloni.WebAPI.Interface;
 using EventPlusTorloni.WebAPI.Models;
 using EventPlusTorloni.WebAPI.Util;
@@ -33,7 +34,7 @@ public class UsuarioRepository : IUsuarioRepository
     /// </summary>
     /// <param name="id">id do usuario buscado</param>
     /// <returns>Usuario Buscado</returns>
-    public Usuario ListarPorId(Guid id)
+    public Usuario BuscarPorId(Guid id)
     {
         return _context.Usuarios.Include(usuario => usuario.IdTipoUsuarioNavigation).FirstOrDefault(usuario => usuario.IdUsuario == id)!;
     }

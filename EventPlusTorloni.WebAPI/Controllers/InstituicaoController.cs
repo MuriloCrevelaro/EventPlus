@@ -40,7 +40,6 @@ public class InstituicaoController : ControllerBase
         }
         catch (Exception erro) 
         {
-
             return BadRequest(erro.Message);
         }
     }

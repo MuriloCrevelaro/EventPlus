@@ -1,3 +1,4 @@
+using Azure.AI.ContentSafety;
 using EventPlusTorloni.WebAPI.BdContextEvent;
 using EventPlusTorloni.WebAPI.Interface;
 using EventPlusTorloni.WebAPI.Repositories;
@@ -7,6 +8,15 @@ using Microsoft.OpenApi;
 using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//Vá em ir para o recurso - ;chaves e Ponto de extremidade- copia a Ponto final
+var endpoint = "";
+//Vá em ir para o recurso - ;chaves e Ponto de extremidade- copia a chave1 e cloca ai
+var apikey = "";
+
+var client = new ContentSafetyClient(new Uri(endpoint), new Azure.AzureKeyCredential(apikey));
+
+builder.Services.AddSingleton(client);
 
 // Add services to the container.
 
@@ -21,6 +31,8 @@ builder.Services.AddScoped<ITipoUsuarioRepository, TipoUsuarioRepository>();
 builder.Services.AddScoped<IInstituicaoRepository, InstituicaoRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IEventoRepository, EventoRepository>();
+builder.Services.AddScoped<IPresencaRepository, PresencaRepository>();
+builder.Services.AddScoped<IComentarioEventoRepository, ComentarioEventoRepository>();
 
 //Adiciona Swagger
 builder.Services.AddEndpointsApiExplorer();

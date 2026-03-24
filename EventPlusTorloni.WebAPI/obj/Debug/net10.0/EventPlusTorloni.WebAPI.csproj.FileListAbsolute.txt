@@ -322,3 +322,4 @@ C:\Users\43376666806\Desktop\3SS-Torloni\DevSchool\EventPlus\EventPlusTorloni.We
 C:\Users\43376666806\Desktop\3SS-Torloni\DevSchool\EventPlus\EventPlusTorloni.WebAPI\obj\Debug\net10.0\EventPlusTorloni.WebAPI.genruntimeconfig.cache
 C:\Users\43376666806\Desktop\3SS-Torloni\DevSchool\EventPlus\EventPlusTorloni.WebAPI\obj\Debug\net10.0\ref\EventPlusTorloni.WebAPI.dll
 C:\Users\43376666806\Desktop\3SS-Torloni\DevSchool\EventPlus\EventPlusTorloni.WebAPI\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\43376666806\Desktop\3SS-Torloni\DevSchool\EventPlus\EventPlusTorloni.WebAPI\bin\Debug\net10.0\Azure.AI.ContentSafety.dll

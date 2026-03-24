@@ -12,9 +12,9 @@ namespace EventPlusTorloni.WebAPI.Repositories
             _context = context;
         }
 
-        public void Cadastrar(Instituicao Instituicao)
+        public void Cadastrar(Instituicao instituicao)
         {
-            _context.Instituicaos.Add(Instituicao);
+            _context.Instituicaos.Add(instituicao);
             _context.SaveChanges();
         }
         public Instituicao BuscarPorId(Guid id)

@@ -34,6 +34,8 @@ namespace FilmesTorloni.WebAPI.Controllers
                 {
                     new Claim(JwtRegisteredClaimNames.Jti, usuarioBuscado.Senha!),
                     new Claim(JwtRegisteredClaimNames.Email, usuarioBuscado.Email!),
+                    new Claim(JwtRegisteredClaimNames.Email, usuarioBuscado.IdUsuario.ToString()),
+                    new Claim(ClaimTypes.Role, usuarioBuscado.IdTipoUsuarioNavigation!.Titulo!)
                 };
 
                 var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("filmes-chave-autenticacao-webapi-dev"));

@@ -17,7 +17,7 @@ public class EventoRepository : IEventoRepository
     public void Atualizar(Guid id, Evento evento)
     {
         var eventoAtualizado = _context.Eventos.Find(id);
-        if (eventoAtualizado == null)
+        if (eventoAtualizado != null)
         {
             eventoAtualizado!.Nome = evento.Nome;
             _context.SaveChanges();

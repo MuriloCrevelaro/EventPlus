@@ -34,9 +34,9 @@ public class UsuarioRepository : IUsuarioRepository
     /// </summary>
     /// <param name="id">id do usuario buscado</param>
     /// <returns>Usuario Buscado</returns>
-    public Usuario BuscarPorId(Guid id)
+    public List<Usuario> Listar()
     {
-        return _context.Usuarios.Include(usuario => usuario.IdTipoUsuarioNavigation).FirstOrDefault(usuario => usuario.IdUsuario == id)!;
+        return _context.Usuarios.OrderBy(Usuarios => Usuarios.IdUsuario).ToList();
     }
 
     /// <summary>
@@ -63,11 +63,6 @@ public class UsuarioRepository : IUsuarioRepository
         return null!;
     }
 
-    public List<Usuario> Listar()
-    {
-        throw new NotImplementedException();
-    }
-
 
     public void Delete(Guid IdUsuario)
     {
@@ -75,6 +70,11 @@ public class UsuarioRepository : IUsuarioRepository
     }
 
     public void Atualizar(Guid id, Usuario usuario)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Usuario Listar(Guid id)
     {
         throw new NotImplementedException();
     }

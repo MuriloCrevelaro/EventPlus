@@ -26,7 +26,20 @@ public class UsuarioController : ControllerBase
     {
         try
         {
-            return Ok(_usuarioRepository.BuscarPorId(id));
+            return Ok(_usuarioRepository.Listar(id));
+        }
+        catch (Exception erro)
+        {
+            return BadRequest(erro.Message);
+        }
+    }
+
+    [HttpGet]
+    public IActionResult Listar()
+    {
+        try
+        {
+            return Ok(_usuarioRepository.Listar());
         }
         catch (Exception erro)
         {
